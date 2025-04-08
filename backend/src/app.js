@@ -49,11 +49,14 @@ app.get('*',(req,res)=>{
     res.sendFile(path.resolve(_dirname,'frontend','dist','index.html'));
 })
 
-connectDB().then(()=>{
-    console.log("Database connected successfully") ;
-    server.listen(process.env.PORT,()=>{
-        console.log("Server is successfully listening on port 3000...")
-    })
-}).catch((err)=>{
-    console.log("Database cannot be connected")
-})
+const PORT = process.env.PORT || 3000;
+
+connectDB().then(() => {
+    console.log("✅ Database connected successfully");
+
+    server.listen(PORT, () => {
+        console.log(`🚀 Server is listening on port ${PORT}`);
+    });
+}).catch((err) => {
+    console.error("❌ Database connection failed");
+});
