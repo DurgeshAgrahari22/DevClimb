@@ -1,0 +1,59 @@
+const express = require("express")
+connectDB = require('./config/database')
+const app = express();
+const cookieParser = require("cookie-parser");
+const jwt = require('jsonwebtoken');
+const cors = require('cors');
+const chatRoute = require('./routes/chatRoute')
+const http = require('http')
+const path = require('path')
+require('dotenv').config()
+app.use(cors(
+    {
+        origin:process.env.FRONTEND_URI,
+        credentials:true
+    }
+));
+
+const _dirname = path.resolve();
+app.use(express.json())
+app.use(cookieParser())
+
+app.use(express.urlencoded({ extended: true }));
+
+
+
+const authRouter = require('./routes/auth')
+const profileRouter = require('./routes/profile')
+const requestRouter = require('./routes/request')
+const userRouter = require('./routes/user');
+// const PaymentRouter = require('./routes/payment')
+const initializeSocket = require("./utils/socket");
+const uploadRouter = require('./routes/upload')
+
+app.use('/',authRouter)
+app.use('/',profileRouter)
+app.use('/',requestRouter)
+app.use('/',userRouter)
+app.use('/',chatRoute)
+app.use('/',uploadRouter)
+// app.use('/',PaymentRouter);
+
+
+const server = http.createServer(app);
+initializeSocket(server)
+
+
+app.use(express.static(path.join(_dirname,'/frontend/dist')))
+app.get('*',(req,res)=>{
+    res.sendFile(path.resolve(_dirname,'frontend','dist','index.html'));
+})
+
+connectDB().then(()=>{
+    console.log("Database connected successfully") ;
+    server.listen(process.env.PORT,()=>{
+        console.log("Server is successfully listening on port 3000...")
+    })
+}).catch((err)=>{
+    console.log("Database cannot be connected")
+})
