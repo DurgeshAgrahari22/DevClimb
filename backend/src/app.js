@@ -10,7 +10,7 @@ const path = require('path')
 require('dotenv').config()
 app.use(cors(
     {
-        origin:["*"],
+        origin:process.env.FRONTEND_URI,
         credentials:true
     }
 ));
@@ -52,11 +52,11 @@ app.get('*',(req,res)=>{
 const PORT = process.env.PORT || 3000;
 
 connectDB().then(() => {
-    console.log("✅ Database connected successfully");
+    console.log(" Database connected successfully");
 
     server.listen(PORT, () => {
-        console.log(`🚀 Server is listening on port ${PORT}`);
+        console.log(` Server is listening on port ${PORT}`);
     });
 }).catch((err) => {
-    console.error("❌ Database connection failed");
+    console.error(" Database connection failed");
 });
