@@ -11,7 +11,7 @@ const getSecretRoomId = (userId,targetUserId)=>{
 const initializeSocket = (server)=>{
     const io = socket(server,{
         cors:{
-            origin:"https://devclimb-1.onrender.com",
+            origin:["http://localhost:3000","https://devclimb-1.onrender.com"],
         },
     });
     // 4. connection on

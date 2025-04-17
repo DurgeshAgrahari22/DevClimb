@@ -103,7 +103,6 @@ const Chat = () => {
             />
             <div>
               <div className="font-medium">{friend.firstName} {friend.lastName}</div>
-              <div className="text-sm text-green-600">{online?"Online":"Offline"}</div>
             </div>
           </div>
         ))}
