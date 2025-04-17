@@ -25,7 +25,7 @@ const CodechefProfile = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-gray-100 to-blue-100 p-4">
+    <div className="flex flex-col items-center justify-center min-h-screen  p-4">
       {/* Search */}
       <div className="mb-6 flex gap-3 items-center">
         <input
@@ -33,11 +33,11 @@ const CodechefProfile = () => {
           placeholder="Enter CodeChef Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          className="px-4 py-2 w-64 md:w-80 border border-gray-300 rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          className="px-4 py-2 w-64 md:w-80 border  rounded-xl shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
         />
         <button
           onClick={fetchCodechefData}
-          className=" px-5 py-2 bg-blue-600 text-white font-semibold rounded-xl transition-transform duration-300 hover:scale-105 hover:bg-blue-700"
+          className=" px-5 py-2 bg-blue-600  font-semibold rounded-xl transition-transform duration-300 hover:scale-105 hover:bg-blue-700"
         >
           Search
         </button>

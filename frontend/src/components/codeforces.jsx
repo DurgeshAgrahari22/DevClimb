@@ -43,7 +43,7 @@ const CodeforcesProfile = () => {
     : "N/A";
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 to-white p-4">
+    <div className="flex flex-col items-center justify-center min-h-screen p-4">
       {/* Search */}
       <div className="flex items-center mb-6 space-x-3">
         <input
@@ -55,7 +55,7 @@ const CodeforcesProfile = () => {
         />
         <button
           onClick={fetchCodeforcesData}
-          className="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all"
+          className="px-4 py-2 bg-blue-600  font-semibold rounded-lg hover:bg-blue-700 transition-all"
         >
           Search
         </button>
@@ -66,7 +66,7 @@ const CodeforcesProfile = () => {
 
       {/* Profile Card */}
       {user && (
-        <div className="bg-white shadow-xl rounded-xl w-full max-w-md p-6 text-gray-800 transform transition duration-500 hover:scale-[1.02]">
+        <div className=" shadow-xl rounded-xl w-full max-w-md p-6 text-gray-800 transform transition duration-500 hover:scale-[1.02]">
           <div className="flex items-center space-x-4 mb-4">
             <img
               src={user.titlePhoto || "https://via.placeholder.com/150"}

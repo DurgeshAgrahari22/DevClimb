@@ -12,9 +12,11 @@ import Chat from './components/Chat'
 import Premium from './components/Premium'
 import Codechef from './components/codechef'
 import Codeforces from './components/codeforces'
+import {Toaster} from 'react-hot-toast'
 function App() {
   return (
-    <>
+    <div>
+    <Toaster/>
     <Provider store={appStore}>
     <BrowserRouter basename='/'>
       <Routes>
@@ -24,7 +26,7 @@ function App() {
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/connections' element={<Connections/>}/>
           <Route path='/requests' element={<Requests/>}/>
-          <Route path='/chatWithFriend/:targetUserId' element={<Chat/>}/>
+          <Route path='/chatWithFriends/:targetUserId' element={<Chat/>}/>
           <Route path='/premium' element={<Premium/>}/>
           <Route path='/codechef' element={<Codechef/>}/>
           <Route path='/codeforces' element={<Codeforces/>}/>
@@ -33,7 +35,7 @@ function App() {
       </Routes>
     </BrowserRouter>
     </Provider>
-    </>
+    </div>
   )
 }
 

@@ -12,7 +12,7 @@ const Requests = () => {
         try {
             const fetchRequest = await axios.get(Base_Url+"/user/requests/received",{withCredentials:true});
             dispatch(addRequests(fetchRequest.data.data));
-            // console.log(requests)
+            console.log(requests)
         } catch (error) {
             console.error(error.message);
         }
