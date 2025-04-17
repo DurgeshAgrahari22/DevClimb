@@ -18,7 +18,6 @@ const Chat = () => {
   const [newMessages, setNewMessages] = useState("");
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const messagesEndRef = useRef(null);
-  const online = IsOnline();
 
   const sendMessageClick = () => {
     const time = new Date().toLocaleTimeString();
