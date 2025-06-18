@@ -4,6 +4,7 @@ import { createSocketConnection } from '../utils/socket';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { Base_Url } from '../utils/constants';
+
 const socket = createSocketConnection();
 
 const Chat = () => {
@@ -83,75 +84,91 @@ const Chat = () => {
   }, []);
 
   return (
-    <div className="flex h-screen w-full flex-col md:flex-row overflow-hidden">
-      {/* Left Sidebar - Friend List */}
-      <div className="w-full md:w-1/3 border-r border-gray-300 bg-white overflow-y-auto">
-        <h2 className="text-xl font-semibold p-4 border-b">Friends</h2>
+    <div className="flex h-screen w-full flex-col md:flex-row overflow-hidden bg-white dark:bg-black transition-colors">
+      
+      {/* Left Sidebar - Friends */}
+      <div className="w-full md:w-1/3 border-r dark:border-gray-700 border-gray-300 bg-gray-50 dark:bg-gray-900 overflow-y-auto">
+        <h2 className="text-xl font-semibold p-4 border-b dark:border-gray-700 text-gray-800 dark:text-white">Friends</h2>
         {connections.map(friend => (
           <div
             key={friend._id}
-            className={`flex items-center gap-3 p-4 cursor-pointer hover:bg-gray-100 ${
-              friend._id === targetUserId ? 'bg-gray-200' : ''
+            className={`flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 transition ${
+              friend._id === targetUserId ? 'bg-gray-300 dark:bg-gray-800' : ''
             }`}
             onClick={() => navigate(`/chatWithFriends/${friend._id}`)}
           >
-          {console.log(friend._id)}
             <img
               src={friend?.photoUrl || "https://via.placeholder.com/150"}
               alt="Profile"
-              className="h-12 w-12 rounded-full object-cover"
+              className="h-12 w-12 rounded-full object-cover border-2 border-gray-300"
             />
             <div>
-              <div className="font-medium">{friend.firstName} {friend.lastName}</div>
+              <div className="font-medium text-gray-900 dark:text-white">
+                {friend.firstName} {friend.lastName}
+              </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Right Chat Section */}
-      <div className="flex-1 flex flex-col bg-gray-100">
-        {/* Chat Header */}
-        <div className="p-4 bg-white border-b flex items-center gap-4">
+      {/* Chat Section */}
+      <div className="flex-1 flex flex-col bg-gray-100 dark:bg-gray-950 transition-colors">
+        
+        {/* Header */}
+        <div className="p-4 bg-white dark:bg-gray-800 border-b dark:border-gray-700 flex items-center gap-4">
           <img
-            className="h-12 w-12 rounded-full object-cover"
+            className="h-12 w-12 rounded-full object-cover border border-gray-400"
             src={targetUser?.photoUrl || "https://via.placeholder.com/150"}
             alt="Profile"
           />
           <div>
-            <div className="text-lg font-semibold">{targetUser?.firstName} {targetUser?.lastName}</div>
-            <div className={`text-sm ${isOnline ? "text-green-600" : "text-red-600"}`}>
+            <div className="text-lg font-semibold text-gray-900 dark:text-white">
+              {targetUser?.firstName} {targetUser?.lastName}
+            </div>
+            <div className={`text-sm ${isOnline ? "text-green-600" : "text-red-500"}`}>
               {isOnline ? "Online" : "Offline"}
             </div>
           </div>
         </div>
 
-        {/* Messages */}
+        {/* Messages Area */}
         <div className="flex-1 p-4 space-y-3 overflow-y-auto">
-          {messages.map((message, index) => (
-            <div key={index} className={`chat ${user?.firstName === message.firstName ? "chat-end" : "chat-start"}`}>
-              <div className="chat-header font-medium text-sm mb-1">
-                {`${message.firstName} ${message.lastName}`}
-                <time className="text-xs opacity-50 ml-2">{message.time || "now"}</time>
+          {messages.map((message, index) => {
+            const isOwn = user?.firstName === message.firstName;
+            return (
+              <div
+                key={index}
+                className={`w-full flex ${isOwn ? "justify-end" : "justify-start"}`}
+              >
+                <div className="max-w-xs md:max-w-md">
+                  <div className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    {message.firstName} {message.lastName}
+                    <span className="ml-2 text-xs text-gray-500">{message.time}</span>
+                  </div>
+                  <div className={`px-4 py-2 rounded-2xl text-white ${
+                    isOwn ? "bg-blue-600" : "bg-gray-500"
+                  }`}>
+                    {message.text}
+                  </div>
+                </div>
               </div>
-              <div className="chat-bubble max-w-xs md:max-w-md">{message.text}</div>
-              <div className="chat-footer opacity-50 text-xs">Seen</div>
-            </div>
-          ))}
+            );
+          })}
           <div ref={messagesEndRef}></div>
         </div>
 
         {/* Message Input */}
-        <div className="p-4 border-t flex items-center gap-3 bg-white">
+        <div className="p-4 border-t dark:border-gray-700 bg-white dark:bg-gray-800 flex items-center gap-3">
           <input
             type="text"
             placeholder="Type your message..."
-            className="flex-1 border border-gray-400 rounded-full px-4 py-2 focus:outline-none"
+            className="flex-1 border border-gray-400 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 rounded-full px-4 py-2 text-black dark:text-white focus:outline-none"
             value={newMessages}
             onChange={(e) => setNewMessages(e.target.value)}
           />
           <button
             onClick={sendMessageClick}
-            className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700"
+            className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"
           >
             Send
           </button>

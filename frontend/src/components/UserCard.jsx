@@ -20,7 +20,7 @@ const UserCard = ({ user }) => {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto mt-8 bg-white/60 backdrop-blur-md shadow-xl border border-gray-200 rounded-2xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+    <div className="w-full mb-5 max-w-md mx-auto mt-8 bg-white/60 backdrop-blur-md shadow-xl border border-gray-200 rounded-2xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
       {/* Image Section */}
       <div className="relative group">
         <img

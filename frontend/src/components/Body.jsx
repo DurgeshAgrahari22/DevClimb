@@ -29,15 +29,23 @@ const Body = () => {
     fetchUser();
   }, []);
 
-  return (
-    <div className="flex flex-col min-h-screen">
-      <NavBar />
-      <main className="flex-grow">
-        <Outlet />
-      </main>
+ return (
+  <div className="flex flex-col min-h-screen">
+    {/* Header */}
+    <NavBar />
+
+    {/* Main content that grows */}
+    <main className="flex-grow">
+      <Outlet />
+    </main>
+
+    {/* Footer always at the bottom */}
+    <footer>
       <Footer />
-    </div>
-  );
+    </footer>
+  </div>
+);
+
 };
 
 export default Body;

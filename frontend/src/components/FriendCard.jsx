@@ -5,7 +5,7 @@ const FriendRow = ({ connection }) => {
     const { _id, firstName, lastName, about, photoUrl } = connection;
 
     return (
-        <div className="flex items-center bg-white shadow-md rounded-lg p-4 w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto my-4">
+        <div className="flex items-center bg-white shadow-2xl rounded-lg p-4 w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto my-4">
             {/* Profile Image */}
             <img
                 src={photoUrl}

@@ -8,7 +8,7 @@ const chatRoute = require('./routes/chatRoute')
 const http = require('http')
 const path = require('path')
 require('dotenv').config()
-const allowedOrigins = [process.env.FRONTEND_URI,"http://localhost:3000"]
+const allowedOrigins = [process.env.FRONTEND_URI,"http://localhost:5173"]
 app.use(cors(
     {
         origin:allowedOrigins,

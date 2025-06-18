@@ -24,7 +24,6 @@ chatRoute.get('/chat/:targetUserId',userAuth,async(req,res)=>{
             participationId:[userId,targetUserId],
             messages:[]
         })
-        // console.log("Successfull")
         await chat.save();
     }
     res.send(chat);

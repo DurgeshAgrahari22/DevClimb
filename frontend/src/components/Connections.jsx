@@ -39,7 +39,7 @@ const Connections = () => {
                 </h1>
             </div>
     
-            <div className="w-full max-w-2xl mx-auto mt-6 shadow-md rounded-md overflow-hidden">
+            <div className="w-full max-w-2xl mx-auto mt-6 shadow-2xl rounded-md overflow-hidden">
           {connection.map((friend, index) => (
             <FriendCard key={index} connection={friend} />
           ))}
