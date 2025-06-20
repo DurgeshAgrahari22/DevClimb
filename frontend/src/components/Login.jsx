@@ -8,11 +8,11 @@ import toast from 'react-hot-toast';
 import { Eye, EyeOff } from 'lucide-react';
 
 const Login = () => {
-  const [emailId, setEmailId] = useState('Duggu@gmail.ac.in');
+  const [emailId, setEmailId] = useState('');
   const [seePassword, setSeePassword] = useState(false);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [password, setPassword] = useState('Duggu@123');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
@@ -108,7 +108,7 @@ const Login = () => {
             <div className="relative">
               <input
                 type={seePassword ? 'text' : 'password'}
-                placeholder="Duggu@123"
+                placeholder="password@675"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="mt-1 w-full px-4 py-2 pr-10 rounded-lg bg-white/90 dark:bg-gray-800 border dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:text-white"
