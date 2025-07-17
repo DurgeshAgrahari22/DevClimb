@@ -2,9 +2,11 @@ const socket = require('socket.io')
 const crypto = require('crypto');
 const Chat = require('../models/chat')
 const getSecretRoomId = (userId,targetUserId)=>{
+    const a = userId.toString();
+    const b = targetUserId.toString();
     return crypto
     .createHash("sha256")
-    .update([userId,targetUserId].sort().join('$%^'))
+    .update([a,b].sort().join('$%^'))
     .digest("hex");
 }
 // This function initializes WebSocket communication on top of this HTTP server.
